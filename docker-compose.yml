@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  # Nginx Web Server - Phục vụ static files cho ShoeMart AI
+  nginx:
+    image: nginx:alpine
+    container_name: shoemart-web
+    ports:
+    - "80:80"
+
+    
+    volumes:
+      # Mount nginx config
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      
+      # Mount HTML files
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+      - ./shop.html:/usr/share/nginx/html/shop.html:ro
+      
+      # Mount JavaScript files
+      - ./app.js:/usr/share/nginx/html/app.js:ro
+      - ./main.js:/usr/share/nginx/html/main.js:ro
+      - ./shop.js:/usr/share/nginx/html/shop.js:ro
+      - ./utils.js:/usr/share/nginx/html/utils.js:ro
+      - ./ai-chatbot.js:/usr/share/nginx/html/ai-chatbot.js:ro
+      
+      # Mount CSS files
+      - ./style.css:/usr/share/nginx/html/style.css:ro
+      - ./styles.css:/usr/share/nginx/html/styles.css:ro
+      
+      # Mount Configuration files
+      - ./config.json:/usr/share/nginx/html/config.json:ro
+      - ./products.json:/usr/share/nginx/html/products.json:ro
+    
+    networks:
+      - shoemart-network
+    
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+      - AI_API_KEY=${AI_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    
+    restart: unless-stopped
+    
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  shoemart-network:
+    driver: bridge

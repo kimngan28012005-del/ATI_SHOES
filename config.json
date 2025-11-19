@@ -1,0 +1,29 @@
+{
+  "app": {
+    "name": "ShoeMart",
+    "version": "3.0.0",
+    "description": "AI-Powered E-Commerce Chatbot"
+  },
+  "api": {
+    "openai": {
+      "url": "https://api.openai.com/v1/chat/completions",
+      "model": "gpt-4o-mini",
+      "maxTokens": 1500,
+      "temperature": 0.9
+    }
+  },
+  "chatbot": {
+    "maxHistoryTurns": 25,
+    "typingIndicator": true,
+    "animationDuration": 300
+  },
+  "store": {
+    "name": "ShoeMart",
+    "hotline": "1900 1234",
+    "policies": {
+      "shipping": "Free from 1.5M VND",
+      "returnDays": 30,
+      "warranty": "1 year"
+    }
+  }
+}

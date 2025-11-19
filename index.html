@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShoeMart AI - Cửa Hàng Giày Thông Minh</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="#" onclick="showHome()">
+                <i class="fas fa-shoe-prints"></i> ShoeMart AI
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showHome()">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showShop()">Sản phẩm</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center gap-3">
+                    <!-- Search -->
+                    <div class="search-container d-none d-md-block">
+                        <input type="text" id="navSearch" class="form-control" placeholder="Tìm kiếm giày...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <!-- Cart -->
+                    <div class="position-relative">
+                        <button class="btn btn-outline-primary" onclick="toggleCart()">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge bg-primary cart-count">0</span>
+                        </button>
+                    </div>
+                    
+                    <!-- User -->
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-in-alt me-2"></i>Đăng nhập</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user-plus me-2"></i>Đăng ký</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Homepage -->
+        <div id="homePage" class="page active">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="hero-slide hero-slide-1">
+                                <div class="container">
+                                    <div class="row align-items-center min-vh-100">
+                                        <div class="col-lg-6">
+                                            <h1 class="display-4 fw-bold text-white mb-4">Khám phá BST giày mới nhất</h1>
+                                            <p class="lead text-white mb-4">Tìm kiếm đôi giày hoàn hảo với sự trợ giúp của AI thông minh</p>
+                                            <button class="btn btn-light btn-lg px-4 py-3" onclick="showShop()">Xem sản phẩm</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="hero-slide hero-slide-2">
+                                <div class="container">
+                                    <div class="row align-items-center min-vh-100">
+                                        <div class="col-lg-6">
+                                            <h1 class="display-4 fw-bold text-white mb-4">AI Tư vấn thông minh</h1>
+                                            <p class="lead text-white mb-4">Chatbot AI giúp bạn chọn giày phù hợp nhất với nhu cầu</p>
+                                            <button class="btn btn-light btn-lg px-4 py-3" onclick="openChat()">Trò chuyện với AI</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="hero-slide hero-slide-3">
+                                <div class="container">
+                                    <div class="row align-items-center min-vh-100">
+                                        <div class="col-lg-6">
+                                            <h1 class="display-4 fw-bold text-white mb-4">Thương hiệu uy tín</h1>
+                                            <p class="lead text-white mb-4">Nike, Adidas, Converse, Vans và nhiều thương hiệu nổi tiếng khác</p>
+                                            <button class="btn btn-light btn-lg px-4 py-3" onclick="showShop()">Mua ngay</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Categories Section -->
+            <section class="py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center mb-5">
+                            <h2 class="display-6 fw-bold">Danh mục sản phẩm</h2>
+                            <p class="lead text-secondary">Khám phá các loại giày theo sở thích của bạn</p>
+                        </div>
+                    </div>
+                    <div class="row g-4" id="categoriesContainer">
+                        <!-- Categories will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Products -->
+            <section class="py-5 bg-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center mb-5">
+                            <h2 class="display-6 fw-bold">Sản phẩm nổi bật</h2>
+                            <p class="lead text-secondary">Những đôi giày được yêu thích nhất</p>
+                        </div>
+                    </div>
+                    <div class="row g-4" id="featuredProducts">
+                        <!-- Featured products will be loaded here -->
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Shop Page -->
+        <div id="shopPage" class="page">
+            <div class="container py-4">
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb" class="mb-4">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#" onclick="showHome()">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Sản phẩm</li>
+                    </ol>
+                </nav>
+
+                <div class="row">
+                    <!-- Sidebar Filters -->
+                    <div class="col-lg-3 col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Bộ lọc</h5>
+                            </div>
+                            <div class="card-body">
+                                <!-- Mobile search -->
+                                <div class="mb-3 d-md-none">
+                                    <input type="text" id="mobileSearch" class="form-control" placeholder="Tìm kiếm...">
+                                </div>
+
+                                <!-- Category Filter -->
+                                <div class="mb-4">
+                                    <h6 class="fw-bold">Danh mục</h6>
+                                    <div id="categoryFilter">
+                                        <!-- Category checkboxes will be loaded here -->
+                                    </div>
+                                </div>
+
+                                <!-- Brand Filter -->
+                                <div class="mb-4">
+                                    <h6 class="fw-bold">Thương hiệu</h6>
+                                    <div id="brandFilter">
+                                        <!-- Brand checkboxes will be loaded here -->
+                                    </div>
+                                </div>
+
+                                <!-- Price Filter -->
+                                <div class="mb-4">
+                                    <h6 class="fw-bold">Khoảng giá</h6>
+                                    <div class="form-check">
+                                        <input class="form-check-input price-filter" type="checkbox" value="0-2000000" id="price1">
+                                        <label class="form-check-label" for="price1">Dưới 2 triệu</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input price-filter" type="checkbox" value="2000000-3000000" id="price2">
+                                        <label class="form-check-label" for="price2">2-3 triệu</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input price-filter" type="checkbox" value="3000000-4000000" id="price3">
+                                        <label class="form-check-label" for="price3">3-4 triệu</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input price-filter" type="checkbox" value="4000000-999999999" id="price4">
+                                        <label class="form-check-label" for="price4">Trên 4 triệu</label>
+                                    </div>
+                                </div>
+
+                                <!-- Size Filter -->
+                                <div class="mb-4">
+                                    <h6 class="fw-bold">Kích thước</h6>
+                                    <div class="d-flex flex-wrap gap-2" id="sizeFilter">
+                                        <!-- Size buttons will be loaded here -->
+                                    </div>
+                                </div>
+
+                                <!-- Rating Filter -->
+                                <div class="mb-4">
+                                    <h6 class="fw-bold">Đánh giá</h6>
+                                    <div class="form-check">
+                                        <input class="form-check-input rating-filter" type="checkbox" value="4" id="rating4">
+                                        <label class="form-check-label" for="rating4">
+                                            <span class="text-warning">★★★★</span> trở lên
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input rating-filter" type="checkbox" value="3" id="rating3">
+                                        <label class="form-check-label" for="rating3">
+                                            <span class="text-warning">★★★</span> trở lên
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-outline-secondary w-100" onclick="clearFilters()">
+                                    <i class="fas fa-times me-2"></i>Xóa bộ lọc
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Content -->
+                    <div class="col-lg-9 col-md-8">
+                        <!-- Toolbar -->
+                        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+                            <div class="d-flex align-items-center gap-3">
+                                <span id="productCount" class="text-muted">0 sản phẩm</span>
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-outline-secondary active" id="gridView" onclick="setViewMode('grid')">
+                                        <i class="fas fa-th"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-secondary" id="listView" onclick="setViewMode('list')">
+                                        <i class="fas fa-list"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <label for="sortSelect" class="form-label mb-0">Sắp xếp:</label>
+                                <select id="sortSelect" class="form-select" style="width: auto;">
+                                    <option value="default">Mặc định</option>
+                                    <option value="name-asc">Tên A-Z</option>
+                                    <option value="name-desc">Tên Z-A</option>
+                                    <option value="price-asc">Giá thấp đến cao</option>
+                                    <option value="price-desc">Giá cao đến thấp</option>
+                                    <option value="rating-desc">Đánh giá cao nhất</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Products Grid/List -->
+                        <div id="productsContainer" class="products-grid">
+                            <!-- Products will be loaded here -->
+                        </div>
+
+                        <!-- Pagination -->
+                        <nav class="mt-4">
+                            <ul class="pagination justify-content-center" id="pagination">
+                                <!-- Pagination will be loaded here -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-shoe-prints"></i> ShoeMart AI
+                    </h5>
+                    <p class="text-light">Cửa hàng giày trực tuyến với công nghệ AI tiên tiến, mang đến trải nghiệm mua sắm thông minh và tiện lợi.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Liên kết nhanh</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none" onclick="showHome()">Trang chủ</a></li>
+                        <li><a href="#" class="text-light text-decoration-none" onclick="showShop()">Sản phẩm</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Về chúng tôi</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Hỗ trợ khách hàng</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-light text-decoration-none">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Chính sách đổi trả</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">Vận chuyển</a></li>
+                        <li><a href="#" class="text-light text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h6 class="fw-bold mb-3">Liên hệ</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>123 Nguyễn Huệ, Q1, TP.HCM</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i>(028) 1234 5678</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i>info@shoemart.vn</li>
+                    </ul>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-light"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2024 ShoeMart AI. Tất cả quyền được bảo lưu.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">
+                        <a href="#" class="text-light text-decoration-none me-3">Điều khoản sử dụng</a>
+                        <a href="#" class="text-light text-decoration-none">Chính sách bảo mật</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h5 class="mb-0">Giỏ hàng</h5>
+            <button class="btn-close" onclick="toggleCart()"></button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <div class="empty-cart text-center py-5">
+                <i class="fas fa-shopping-cart text-muted mb-3" style="font-size: 3rem;"></i>
+                <p class="text-muted">Giỏ hàng trống</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="d-flex justify-content-between mb-3">
+                <strong>Tổng cộng: <span id="cartTotal">0đ</span></strong>
+            </div>
+            <button class="btn btn-primary w-100">Thanh toán</button>
+        </div>
+    </div>
+
+    <!-- Chat Button -->
+    <button class="chat-btn" id="chatBtn" onclick="toggleChat()">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <!-- Chat Window -->
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <div class="d-flex align-items-center">
+                <div class="avatar me-2">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div>
+                    <h6 class="mb-0">ShoeMart AI</h6>
+                    <small class="text-success">Trực tuyến</small>
+                </div>
+            </div>
+            <button class="btn-close" onclick="toggleChat()"></button>
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="message bot-message">
+                <div class="message-content">
+                    <p>Xin chào! Tôi là trợ lý AI của ShoeMart. Tôi có thể giúp bạn tìm kiếm giày phù hợp, tư vấn size, so sánh sản phẩm và trả lời mọi câu hỏi. Bạn cần hỗ trợ gì?</p>
+                </div>
+                <div class="message-time">Vừa xong</div>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <div class="input-group">
+                <input type="text" class="form-control" id="chatInput" placeholder="Nhập tin nhắn...">
+                <button class="btn btn-primary" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer">
+        <!-- Toasts will be added here -->
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Đang tải...</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

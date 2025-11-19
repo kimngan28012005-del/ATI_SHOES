@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản Phẩm - ShoeMart AI | Website Bán Giày Thông Minh</title>
+    <meta name="description" content="Khám phá bộ sưu tập giày đa dạng tại ShoeMart AI. Tìm kiếm và mua sắm giày với sự hỗ trợ của AI thông minh.">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation (Same as index.html) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-shoe-prints me-2"></i>ShoeMart AI
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="shop.html">Sản phẩm</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Danh mục
+                        </a>
+                        <ul class="dropdown-menu" id="navCategoriesDropdown">
+                            <!-- Categories will be loaded by JavaScript -->
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Liên hệ</a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center">
+                    <!-- Search -->
+                    <form class="d-flex me-3" role="search" id="headerSearchForm">
+                        <input class="form-control form-control-sm" type="search" placeholder="Tìm giày..." id="headerSearchInput">
+                        <button class="btn btn-outline-light btn-sm ms-1" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                    
+                    <!-- Cart -->
+                    <a href="cart.html" class="btn btn-outline-light position-relative me-2">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartCount">
+                            0
+                        </span>
+                    </a>
+                    
+                    <!-- User Account -->
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#login">Đăng nhập</a></li>
+                            <li><a class="dropdown-item" href="#register">Đăng ký</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Sản phẩm</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Content -->
+    <section class="py-4">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar Filters -->
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <div class="sidebar">
+                        <!-- Search Filter -->
+                        <div class="filter-section mb-4">
+                            <h5 class="filter-title">Tìm kiếm</h5>
+                            <div class="search-wrapper">
+                                <input type="text" class="form-control" id="productSearch" placeholder="Tìm kiếm sản phẩm...">
+                                <i class="fas fa-search search-icon"></i>
+                            </div>
+                        </div>
+
+                        <!-- Category Filter -->
+                        <div class="filter-section mb-4">
+                            <h5 class="filter-title">Danh mục</h5>
+                            <div class="filter-options" id="categoryFilters">
+                                <!-- Categories will be loaded by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Brand Filter -->
+                        <div class="filter-section mb-4">
+                            <h5 class="filter-title">Thương hiệu</h5>
+                            <div class="filter-options" id="brandFilters">
+                                <!-- Brands will be loaded by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Price Filter -->
+                        <div class="filter-section mb-4">
+                            <h5 class="filter-title">Khoảng giá</h5>
+                            <div class="price-range">
+                                <div class="row g-2 mb-3">
+                                    <div class="col">
+                                        <input type="number" class="form-control form-control-sm" id="minPrice" placeholder="Từ" min="0">
+                                    </div>
+                                    <div class="col">
+                                        <input type="number" class="form-control form-control-sm" id="maxPrice" placeholder="Đến" min="0">
+                                    </div>
+                                </div>
+                                <div class="price-presets">
+                                    <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-min="0" data-max="1500000">Dưới 1.5tr</button>
+                                    <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-min="1500000" data-max="3000000">1.5tr - 3tr</button>
+                                    <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-min="3000000" data-max="5000000">3tr - 5tr</button>
+                                    <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-min="5000000" data-max="999999999">Trên 5tr</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Size Filter -->
+                        <div class="filter-section mb-4">
+                            <h5 class="filter-title">Size</h5>
+                            <div class="size-options" id="sizeFilters">
+                                <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-size="36">36</button>
+                                <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-size="37">37</button>
+                                <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-size="38">38</button>
+                                <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-size="39">39</button>
+                                <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-size="40">40</button>
+                                <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-size="41">41</button>
+                                <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-size="42">42</button>
+                                <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-size="43">43</button>
+                                <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-size="44">44</button>
+                                <button class="btn btn-outline-secondary btn-sm me-2 mb-2" data-size="45">45</button>
+                            </div>
+                        </div>
+
+                        <!-- Rating Filter -->
+                        <div class="filter-section mb-4">
+                            <h5 class="filter-title">Đánh giá</h5>
+                            <div class="rating-options">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="rating" id="rating5" value="5">
+                                    <label class="form-check-label" for="rating5">
+                                        <span class="rating-stars text-warning">★★★★★</span> (5 sao)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="rating" id="rating4" value="4">
+                                    <label class="form-check-label" for="rating4">
+                                        <span class="rating-stars text-warning">★★★★☆</span> (4 sao trở lên)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="rating" id="rating3" value="3">
+                                    <label class="form-check-label" for="rating3">
+                                        <span class="rating-stars text-warning">★★★☆☆</span> (3 sao trở lên)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Clear Filters -->
+                        <div class="filter-section">
+                            <button class="btn btn-secondary w-100" id="clearFilters">
+                                <i class="fas fa-times me-2"></i>Xóa bộ lọc
+                            </button>
+                        </div>
+
+                        <!-- AI Recommendation Box -->
+                        <div class="ai-recommendation-box mt-4 p-3">
+                            <h6 class="text-primary mb-2">
+                                <i class="fas fa-robot me-2"></i>Gợi ý từ AI
+                            </h6>
+                            <p class="small text-muted mb-2">
+                                Cần tư vấn chọn giày phù hợp? Hãy chat với AI Assistant của chúng tôi!
+                            </p>
+                            <button class="btn btn-primary btn-sm w-100" id="startAIRecommendation">
+                                <i class="fas fa-comments me-2"></i>Tư vấn ngay
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Products Area -->
+                <div class="col-lg-9 col-md-8">
+                    <!-- Toolbar -->
+                    <div class="products-toolbar d-flex justify-content-between align-items-center flex-wrap mb-4">
+                        <div class="products-count">
+                            <span id="productsCount">0 sản phẩm</span>
+                        </div>
+                        
+                        <div class="d-flex align-items-center gap-3 flex-wrap">
+                            <!-- View Toggle -->
+                            <div class="view-toggle" role="group">
+                                <button type="button" class="btn btn-outline-secondary btn-sm active" id="gridView">
+                                    <i class="fas fa-th-large"></i>
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" id="listView">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Sort Options -->
+                            <select class="form-select form-select-sm" id="sortSelect" style="width: auto;">
+                                <option value="default">Sắp xếp theo</option>
+                                <option value="name-asc">Tên A-Z</option>
+                                <option value="name-desc">Tên Z-A</option>
+                                <option value="price-asc">Giá thấp đến cao</option>
+                                <option value="price-desc">Giá cao đến thấp</option>
+                                <option value="rating-desc">Đánh giá cao nhất</option>
+                                <option value="discount-desc">Giảm giá nhiều nhất</option>
+                            </select>
+
+                            <!-- Items per page -->
+                            <select class="form-select form-select-sm" id="itemsPerPage" style="width: auto;">
+                                <option value="12">12/trang</option>
+                                <option value="24">24/trang</option>
+                                <option value="48">48/trang</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Active Filters Display -->
+                    <div class="active-filters mb-3" id="activeFilters" style="display: none;">
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                            <small class="text-muted">Bộ lọc đang áp dụng:</small>
+                            <div class="filter-tags" id="filterTags"></div>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-container">
+                        <div class="products-grid row g-4" id="productsGrid">
+                            <!-- Products will be loaded here by JavaScript -->
+                        </div>
+
+                        <!-- Loading State -->
+                        <div class="text-center py-5" id="loadingState" style="display: none;">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-3 text-muted">Đang tải sản phẩm...</p>
+                        </div>
+
+                        <!-- No Results State -->
+                        <div class="text-center py-5" id="noResultsState" style="display: none;">
+                            <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                            <h4>Không tìm thấy sản phẩm</h4>
+                            <p class="text-muted mb-4">Thử thay đổi bộ lọc hoặc từ khóa tìm kiếm để xem thêm sản phẩm.</p>
+                            <button class="btn btn-primary" id="clearFiltersNoResults">
+                                <i class="fas fa-times me-2"></i>Xóa bộ lọc
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav class="mt-5" id="paginationNav" style="display: none;">
+                        <ul class="pagination justify-content-center" id="paginationList">
+                            <!-- Pagination will be generated by JavaScript -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chatbot (Same as index.html) -->
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <div class="d-flex align-items-center">
+                <div class="chatbot-avatar me-2">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div>
+                    <h6 class="mb-0">AI Assistant</h6>
+                    <small class="text-muted">Online</small>
+                </div>
+            </div>
+            <button class="btn btn-sm" id="closeChatBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    Xin chào! Tôi có thể giúp bạn tìm kiếm giày phù hợp. Bạn đang tìm loại giày nào?
+                </div>
+                <div class="message-time">Vừa xong</div>
+            </div>
+        </div>
+        
+        <div class="chatbot-input">
+            <form id="chatForm">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="messageInput" 
+                           placeholder="Nhập tin nhắn..." autocomplete="off">
+                    <button type="submit" class="btn btn-primary" id="sendBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Floating Chat Button -->
+    <div class="chatbot-float-btn" id="chatFloatBtn">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="js/utils.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/ai-chatbot.js"></script>
+    <script src="js/shop.js"></script>
+    <script src="js/main.js"></script>
+
+    <style>
+    /* Additional styles for shop page */
+    .page-header {
+        padding: 6rem 0 2rem;
+    }
+
+    .sidebar {
+        background: white;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        position: sticky;
+        top: 100px;
+    }
+
+    .filter-title {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #333;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 0.5rem;
+    }
+
+    .search-wrapper {
+        position: relative;
+    }
+
+    .search-icon {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #6c757d;
+    }
+
+    .filter-options .form-check {
+        margin-bottom: 0.5rem;
+    }
+
+    .filter-options .form-check-input:checked {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .price-presets .btn.active {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+    }
+
+    .size-options .btn.active {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+    }
+
+    .ai-recommendation-box {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 8px;
+        color: white;
+    }
+
+    .ai-recommendation-box .btn-primary {
+        background: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+    }
+
+    .ai-recommendation-box .btn-primary:hover {
+        background: rgba(255, 255, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .products-toolbar {
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+
+    .view-toggle .btn {
+        border-radius: 0;
+    }
+
+    .view-toggle .btn:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+
+    .view-toggle .btn:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+
+    .view-toggle .btn.active {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+    }
+
+    .active-filters {
+        background: #f8f9fa;
+        padding: 0.75rem;
+        border-radius: 6px;
+    }
+
+    .filter-tag {
+        display: inline-flex;
+        align-items: center;
+        background: #007bff;
+        color: white;
+        padding: 0.25rem 0.5rem;
+        border-radius: 12px;
+        font-size: 0.875rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .filter-tag .btn-close {
+        margin-left: 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .products-grid.list-view .product-card {
+        display: flex;
+        flex-direction: row;
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+
+    .products-grid.list-view .product-image {
+        width: 200px;
+        flex-shrink: 0;
+    }
+
+    .products-grid.list-view .product-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    @media (max-width: 768px) {
+        .sidebar {
+            position: static;
+            margin-bottom: 2rem;
+        }
+        
+        .products-toolbar {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .products-grid.list-view .product-card {
+            flex-direction: column;
+        }
+        
+        .products-grid.list-view .product-image {
+            width: 100%;
+        }
+    }
+    </style>
+</body>
+</html>

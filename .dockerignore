@@ -1,0 +1,56 @@
+# Tệp này thông báo Docker không cần copy những file/thư mục này vào image
+# Giúp giảm kích thước image và tăng tốc độ build
+
+# Version control
+.git
+.gitignore
+.gitlab-ci.yml
+.github
+
+# IDE & Editors
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+
+# Node (nếu có)
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+*.log
+*.pot
+*.mo
+
+# Docker
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Development
+*.md
+LICENSE
+*.test.js
+coverage
+
+# Build & Artifacts
+dist/
+build/
+out/
+
+# Dependencies
+vendor/
